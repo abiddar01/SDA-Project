@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Orders</title>
+  <link rel="stylesheet" href="/admin.css">
+  <style>
+    /* General styles */
+    body {
+      background-image: url('/orders.jpg');
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 30vh;
+    }
+
+    .orders-container {
+      background-color: transparent;
+      border-radius: 10px;
+      border: 1px solid white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 90%;
+      max-width: 1200px;
+      backdrop-filter: blur(25px);
+    }
+
+    h1 {
+      text-align: center;
+      color: whitesmoke;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+
+    table thead tr {
+      background-color: grey;
+      color: #fff;
+      text-align: left;
+    }
+
+    table th,
+    table td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+
+    table tbody tr:nth-child(even) {
+      
+    }
+
+    table tbody tr:hover {
+      background-color: black;
+    }
+
+    table th {
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-size: 14px;
+    }
+
+    table td {
+      font-size: 14px;
+      color: white;
+      
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      table {
+        font-size: 12px;
+      }
+
+      table th,
+      table td {
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orders-container">
+    <h1>All Orders</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>Variant</th>
+          <th>Booking Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% orders.forEach(order => { %>
+          <tr>
+            <td><%= order.fullName %></td>
+            <td><%= order.phone %></td>
+            <td><%= order.email %></td>
+            <td><%= order.city %></td>
+            <td><%= order.variant %></td>
+            <td><%= order.createdAt.toLocaleDateString() %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

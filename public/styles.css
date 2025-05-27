@@ -1,0 +1,198 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  
+}
+
+/* Top Banner */
+.top-banner {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo img {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #e30613;
+}
+
+.lang-switch {
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    background: #f4f4f4;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.hero-image img {
+    width: 500px;
+    border-radius: 8px;
+}
+
+/* Explore Section */
+.explore {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.explore h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.explore p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.tabs button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e30613;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tabs button:hover {
+    background-color: #c10410;
+}
+
+.car-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 250px;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.card p {
+    font-size: 15px;
+    color: #555;
+}
+
+.card strong {
+    color: #e30613;
+}
+
+.container{
+    width: 100%;
+    overflow: hidden;
+    
+}
+
+#camry{
+    margin-top: 75px;
+}
+
+.footer {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+}
+
+
+.footer h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.footer p,
+.footer a {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.footer a:hover {
+    color: #e30613; /* Red hover effect */
+    text-decoration: underline;
+}
+
+.footer .bi {
+    font-size: 1.2rem; /* Icons size */
+    transition: color 0.3s;
+}
+
+.footer .bi:hover {
+    color: #e30613; /* Red hover effect on icons */
+}

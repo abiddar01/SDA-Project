@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Create Item</title>
+  <style>
+    body {
+      background-image: url('/create.jpg');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .form-container {
+      background: transparent;
+      backdrop-filter: blur(15px);
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid grey;
+      width: 700px;
+  
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      color: whitesmoke;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea, button {
+      margin-left: 28%;
+      margin-bottom: 15px;
+      color: whitesmoke;
+      padding: 10px;
+      border: 1px solid grey;
+      border-radius: 5px;
+      font-size: 1em;
+      background: transparent;
+      width: 40%;
+      border: 1px solid grey;
+    }
+    textarea::placeholder {
+      color: whitesmoke;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    input::placeholder {
+      color: whitesmoke;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    button {
+      background-color: rgb(3, 124, 124);
+      color: #ffffff;
+      border: none;
+      margin-left: 210px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Add New Products</h1>
+    <form action="/dashboard/create" method="POST">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="String" name="price" placeholder="Price" required>
+      <input type="number" name="quantity" placeholder="Quantity" required>
+      <textarea name="description" placeholder="Description" rows="5" required></textarea>
+      <input type="text" name="image" placeholder="Image url" required>
+      <button type="submit">Create</button>
+    </form>
+  </div>
+</body>
+</html>
