@@ -4,12 +4,18 @@
   <title>Create Item</title>
   <style>
     body {
+<<<<<<< HEAD
       background-image: url('/create.jpg');
+=======
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+>>>>>>> main
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
+<<<<<<< HEAD
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -21,18 +27,32 @@
       border: 1px solid grey;
       width: 700px;
   
+=======
+    }
+    .form-container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 300px;
+>>>>>>> main
     }
     h1 {
       text-align: center;
       margin-bottom: 20px;
       font-size: 1.5em;
+<<<<<<< HEAD
       color: whitesmoke;
+=======
+      color: #333;
+>>>>>>> main
     }
     form {
       display: flex;
       flex-direction: column;
     }
     input, textarea, button {
+<<<<<<< HEAD
       margin-left: 28%;
       margin-bottom: 15px;
       color: whitesmoke;
@@ -58,23 +78,50 @@
       color: #ffffff;
       border: none;
       margin-left: 210px;
+=======
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    textarea {
+      resize: none;
+    }
+    button {
+      background-color: #007BFF;
+      color: #ffffff;
+      border: none;
+>>>>>>> main
       cursor: pointer;
       transition: background-color 0.3s;
     }
     button:hover {
+<<<<<<< HEAD
       background-color: black;
+=======
+      background-color: #0056b3;
+>>>>>>> main
     }
   </style>
 </head>
 <body>
   <div class="form-container">
     <h1>Add New Products</h1>
+<<<<<<< HEAD
     <form action="/dashboard/create" method="POST">
+=======
+    <form action="/admin/create" method="POST">
+>>>>>>> main
       <input type="text" name="name" placeholder="Name" required>
       <input type="String" name="price" placeholder="Price" required>
       <input type="number" name="quantity" placeholder="Quantity" required>
       <textarea name="description" placeholder="Description" rows="5" required></textarea>
+<<<<<<< HEAD
       <input type="text" name="image" placeholder="Image url" required>
+=======
+      <input type="text" name="image" required>
+>>>>>>> main
       <button type="submit">Create</button>
     </form>
   </div>

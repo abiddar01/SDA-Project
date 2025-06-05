@@ -5,13 +5,18 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+<<<<<<< HEAD
       background-image: url('/edit.jpg');
+=======
+      background-color: #f8f9fa;
+>>>>>>> main
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+<<<<<<< HEAD
       background-size: cover;
     }
     .container {
@@ -22,6 +27,15 @@
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       width: 700px;
+=======
+    }
+    .container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 500px;
+>>>>>>> main
     }
     h1 {
       text-align: center;
@@ -34,19 +48,32 @@
     }
     td {
       padding: 10px;
+<<<<<<< HEAD
       margin-top: 20px;
     }
     td:first-child {
+=======
+      vertical-align: top;
+    }
+    td:first-child {
+      text-align: right;
+>>>>>>> main
       font-weight: bold;
       color: #555;
     }
     input, textarea {
       width: 100%;
       padding: 10px;
+<<<<<<< HEAD
       border: 1px solid grey;
       border-radius: 5px;
       font-size: 1em;
       background: transparent;
+=======
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+>>>>>>> main
     }
     textarea {
       resize: none;
@@ -55,7 +82,11 @@
       display: block;
       width: 100%;
       padding: 10px;
+<<<<<<< HEAD
       background-color: grey;
+=======
+      background-color: #007BFF;
+>>>>>>> main
       color: #ffffff;
       border: none;
       border-radius: 5px;
@@ -64,17 +95,28 @@
       transition: background-color 0.3s;
     }
     button:hover {
+<<<<<<< HEAD
       background-color: black;
+=======
+      background-color: #0056b3;
+>>>>>>> main
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Update Item</h1>
+<<<<<<< HEAD
     <form action="/dashboard/edit/<%= item.id %>" method="POST">
       <table>
         <tr>
           <td style="margin-top: 40px;"><label for="name">Name:</label></td>
+=======
+    <form action="/admin/edit/<%= item._id %>" method="POST">
+      <table>
+        <tr>
+          <td><label for="name">Name:</label></td>
+>>>>>>> main
           <td><input type="text" id="name" name="name" value="<%= item.name %>"></td>
         </tr>
         <tr>
