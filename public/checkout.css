@@ -26,13 +26,14 @@ body {
 .form-container {
     position: relative; 
     max-width: 800px;
-    margin: 100px auto;
+    margin: 190px auto;
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background: transparent;
     border: 1px solid grey;
+    backdrop-filter: blur(16px);
 }
 h1{
     margin-left: 40%;
@@ -98,14 +99,12 @@ button {
     width: 20%;
     background: transparent;
     margin-left: 40%;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: #ccc;
+    border: 1px solid black;
     transition: 1s ease;
 }
 
 button[type="submit"]:hover {
+    border: none;
     transition: 1s ease;
     background-color: gray;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
