@@ -18,7 +18,7 @@ router.use(
 
 // Hardcoded Admin Credentials (username & hashed password)
 const adminUsername = 'admin';
-const adminPasswordHash = bcrypt.hashSync('admin123', 10); // Hash the password 'admin123'
+const adminPasswordHash = bcrypt.hashSync('admin@123', 10); // Hash the password 'admin123'
 
 // Middleware to check if the user is authenticated
 function isAuthenticated(req, res, next) {

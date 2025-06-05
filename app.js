@@ -1,42 +1,43 @@
 const express = require("express");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const adminRoutes = require("./routes/admin");
 const connectdb = require("./db");
+const path = require("path");
+require("dotenv").config();
 
 const app = express();
 
-// Middleware setup
+// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// Set EJS as the view engine
-app.set("view engine", "ejs");
-app.use(express.static("public"));
 app.use(methodOverride("_method"));
-app.use('/public', express.static('uploads')); // For static assets like images
+
+// Static assets
+app.use(express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "uploads")));
+
+// View engine
+app.set("view engine", "ejs");
 
 // Routes
 app.use(adminRoutes);
 
-const PORT = 1732;
+// Dynamic port for Vercel / local
+const PORT = process.env.PORT || 2990;
 
+// Start server
 async function startServer() {
   try {
     await connectdb(); // Connect to MongoDB
     console.log("Database connected successfully!");
 
-    // Start the server
-    const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`Server running on http://localhost:${PORT}`);
     });
   } catch (err) {
     console.error("Failed to start the server:", err);
   }
 }
-
-require('dotenv').config();
-const mongoURI = process.env.MONGO_URI;
 
 startServer();
