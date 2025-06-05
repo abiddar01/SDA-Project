@@ -1,35 +1,14 @@
-<<<<<<< HEAD
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-  const connectionString = "mongodb+srv://dar8881212:12345@cluster0.lwd19pm.mongodb.net/";
+  // Use environment variable if set, else fallback to local MongoDB URI
+  const connectionString = process.env.MONGO_URI || "mongodb+srv://dar8881212:12345@cluster0.lwd19pm.mongodb.net/";
 
   try {
-    await mongoose.connect(connectionString, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
     console.log("Connected to MongoDB");
-=======
-
-const mongoose = require("mongoose");
-
-const connectDB = async () => {
-
-    
-  const connectionString = "mongodb://localhost:27017/dashboard"; // 
- try {
-    await mongoose.connect(connectionString);
-    useNewUrlParser: true,
- 
-    
-    console.log("Connected to MongoDB");
-
->>>>>>> main
   } catch (error) {
     console.error("MongoDB connection error:", error.message);
-    process.exit(1); // Exit the process if the connection fails
+    process.exit(1); // Exit the process if connection fails
   }
 };
 
