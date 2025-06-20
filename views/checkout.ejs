@@ -1,66 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Car Dealership checkout form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Dealership Checkout Form</title>
   <link rel="stylesheet" href="/checkout.css">
+  <style>
+    .form-group {
+      position: relative;
+      margin-top: 1.5rem;
+    }
+    .form-group label {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      background: none;
+      padding: 0 4px;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      font-size: 0.9rem;
+      color: white;
+    }
+    .form-group input:focus + label,
+    .form-group input:not(:placeholder-shown) + label,
+    .form-group select:focus + label,
+    .form-group select:not([value=""]) + label {
+      top: -8px;
+      font-size: 1.2rem;
+      color: white;
+    }
+    .back-btn {
+      margin: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+    }
+    .message {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      font-size: 1rem;
+      color: white;
+      background-color: green;
+      display: none;
+    }
+    .error {
+      background-color: red;
+    }
+  </style>
 </head>
 <body>
-   
+
   <div class="form-container">
     <button class="close-btn" onclick="closeForm()">×</button>
+    <button class="back-btn" onclick="goBack()">← Back</button>
     <h1>Book My Corolla</h1>
+
     <form id="bookingForm">
       <h2>Personal Details</h2>
       <div class="form-row">
         <div class="form-group">
-          <input type="text" id="fullName" name="fullName" required placeholder="Full Name">
+          <input type="text" id="fullName" name="fullName" required placeholder=" " />
+          <label for="fullName">Full Name</label>
         </div>
         <div class="form-group">
-          <input type="tel" id="phone" name="phone" required placeholder="Phone Number">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <input type="email" id="email" name="email" required placeholder="Email Address">
-        </div>
-        <div class="form-group">
-          <input type="text" id="city" name="city" required placeholder="Current City">
+          <input type="tel" id="phone" name="phone" required placeholder=" " />
+          <label for="phone">Phone Number</label>
         </div>
       </div>
+
       <div class="form-row">
         <div class="form-group">
-          <input type="text" id="company" name="company" placeholder="Current Company">
+          <input type="email" id="email" name="email" required placeholder=" " />
+          <label for="email">Email Address</label>
         </div>
         <div class="form-group">
-          <input type="text" id="job" name="job" placeholder="Current Job">
+          <input type="text" id="city" name="city" required placeholder=" " />
+          <label for="city">Current City</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" id="company" name="company" placeholder=" " />
+          <label for="company">Current Company</label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="job" name="job" placeholder=" " />
+          <label for="job">Current Job / Housewife</label>
         </div>
       </div>
 
       <h2>Book Your Preferred Vehicle</h2>
       <div class="form-row">
         <div class="form-group">
-          <input type="text" id="currentVehicle" name="currentVehicle" placeholder="Current Vehicle">
+          <input type="text" id="currentVehicle" name="currentVehicle" placeholder=" " />
+          <label for="currentVehicle">Current Vehicle</label>
         </div>
         <div class="form-group">
-          <select id="variant" name="variant">
-            <option value="" disabled selected>Select a Variant</option>
-            <option value="L">Corolla L</option>
-            <option value="LE">Corolla LE</option>
-            <option value="SE">Corolla SE</option>
-            <option value="XLE">Corolla XLE</option>
-            <option value="XSE">Corolla XSE</option>
-            <option value="Hybrid">Corolla Hybrid</option>
-            <option value="Altis">Corolla Altis</option>
-            <option value="Cross">Corolla Cross</option>
+          <select id="variant" name="variant" required>
+            <option style="color: #888;" value="" disabled selected hidden>Select A Variant</option>
+            <option value="L">Standard</option>
+            <option value="LE">Sport</option>
+            <option value="SE">Luxury</option>
+            <option value="XLE">Hybrid</option>
           </select>
+          <label for="variant">Variant</label>
         </div>
       </div>
-    
+
       <button type="submit">Submit</button>
     </form>
+
+    <!-- Message Box -->
+    <div id="messageBox" class="message"></div>
   </div>
-  <script src="/script.js"></script>
+
+  <script>
+    function goBack() {
+      window.location.href = "/products";
+    }
+
+    function closeForm() {
+      document.querySelector('.form-container').style.display = 'none';
+    }
+
+    // Form submission with fetch
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      const messageBox = document.getElementById('messageBox');
+
+      try {
+        const response = await fetch('/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          messageBox.textContent = 'Booking submitted successfully!';
+          messageBox.classList.remove('error');
+          form.reset();
+        } else {
+          messageBox.textContent = 'Error submitting booking.';
+          messageBox.classList.add('error');
+        }
+      } catch (err) {
+        messageBox.textContent = 'Error submitting booking.';
+        messageBox.classList.add('error');
+        console.error(err);
+      }
+
+      messageBox.style.display = 'block';
+    });
+  </script>
+
 </body>
 </html>

@@ -33,9 +33,9 @@ router.get('/',(req,res)=>{
   res.render('user');
 })
 
-router.get('/checkout',(req,res)=>{
-  res.render('checkout');
-})
+router.get('/checkout', (req, res) => {
+  res.render('checkout', { title: 'Book Your Corolla' });
+});
 
 // Route to handle booking form submission
 router.post('/checkout', async (req, res) => {
@@ -65,6 +65,7 @@ router.get("/products", async (req, res) => {
 router.get('/login', (req, res) => {
   res.render('login', { error: null });
 });
+
 
 // Route: Handle Login Logic
 router.post('/login', async (req, res) => {

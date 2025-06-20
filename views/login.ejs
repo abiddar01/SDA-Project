@@ -1,42 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modal Login Form</title>
-    <link rel="stylesheet" href="loginstyles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Luxury Car Showroom</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <style>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .input-container {
+      position: relative;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.05);
+      font-size: 1rem;
+      color: white;
+      backdrop-filter: blur(10px);
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: rgba(26, 35, 126, 0.5);
+      box-shadow: 0 4px 20px rgba(26, 35, 126, 0.2);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .input-field::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #6b7280;
+      cursor: pointer;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .custom-checkbox {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      margin-right: 8px;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .custom-checkbox.checked {
+      background-color: #1A237E;
+      border-color: #1A237E;
+    }
+
+    .custom-checkbox.checked::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 3px;
+      width: 5px;
+      height: 9px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .login-button {
+      background: linear-gradient(135deg, #1A237E 0%, #4A5CDE 100%);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      font-size: 1.125rem;
+      letter-spacing: 0.025em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .login-button:hover {
+      background: linear-gradient(135deg, #4A5CDE 0%, #1A237E 100%);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(26, 35, 126, 0.3);
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 35, 126, 0.25);
+    }
+
+    .login-button:active {
+      transform: translateY(0);
+    }
+
+    .login-button.loading {
+      position: relative;
+      color: transparent;
+    }
+
+    .login-button.loading::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 50%;
+      left: 50%;
+      margin: -10px 0 0 -10px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .password-strength {
+      height: 4px;
+      width: 100%;
+      background-color: #e5e7eb;
+      border-radius: 2px;
+      margin-top: 8px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .password-strength-bar {
+      height: 100%;
+      width: 0;
+      transition: width 0.3s, background-color 0.3s;
+    }
+
+    .password-strength.weak .password-strength-bar {
+      width: 33%;
+      background-color: #ef4444;
+    }
+
+    .password-strength.medium .password-strength-bar {
+      width: 66%;
+      background-color: #f59e0b;
+    }
+
+    .password-strength.strong .password-strength-bar {
+      width: 100%;
+      background-color: #10b981;
+    }
+
+    .error-message {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .login-container {
+        flex-direction: column;
+      }
+
+      .image-section {
+        height: 30vh;
+        width: 100%;
+      }
+
+      .form-section {
+        width: 100%;
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A237E',
+            secondary: '#C0C0C0'
+          },
+          borderRadius: {
+            'none': '0px',
+            'sm': '4px',
+            DEFAULT: '8px',
+            'md': '12px',
+            'lg': '16px',
+            'xl': '20px',
+            '2xl': '24px',
+            '3xl': '32px',
+            'full': '9999px',
+            'button': '8px'
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
 
-<h2 class="modal-title">Welcome to Toyota</h2>
-
-<button onclick="document.getElementById('id01').style.display='block'" class="login-btn">Login</button>
-
-<div id="id01" class="modal">
-
-    <form class="modal-content animate" action="/login" method="post">
-        <div class="imgcontainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+<body class="min-h-screen bg-[#0A0A0A]">
+  <div class="login-container flex min-h-screen bg-gradient-to-br from-[#0A0A0A] to-[#1A1A1A]">
+    <div class="image-section hidden md:block w-1/2 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10"></div>
+      <div class="absolute inset-0 z-0 transform hover:scale-105 transition-transform duration-3000"
+        style="background-image: url('/Login.jpg'); background-size: cover; background-position: center;">
+      </div>
+      <div class="absolute bottom-12 left-12 text-white z-20">
+        <h2 class="text-4xl font-bold mb-3 tracking-tight">Admin Access Only</h2>
+        <p class="text-xl font-light opacity-90">Secure administrative portal for authorized personnel</p>
+      </div>
+    </div>
+    <div class="form-section w-full md:w-1/2 flex items-center justify-center p-8 md:p-16 bg-[#0A0A0A] bg-opacity-95 backdrop-blur-lg">
+      <div class="max-w-md w-full">
+        <div class="text-center mb-12">
+          <h1 class="font-['Pacifico'] text-5xl text-white mb-3 tracking-wide">Elegance Wheels</h1>
+          <div class="w-16 h-1 bg-gradient-to-r from-primary to-[#4A5CDE] mx-auto rounded-full mb-8"></div>
+          <h2 class="text-3xl font-bold text-white mb-3 tracking-tight">Admin Portal</h2>
+          <p class="text-gray-400 text-lg">Please sign in with your administrator credentials</p>
         </div>
-
-        <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <button type="submit" class="submit-btn">Login</button>
-            <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-        </div>
-
-        <div class="container footer-container">
-            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        </div>
-    </form>
-</div>
-
+        <form id="loginForm" class="space-y-6" action="/login" method="post">
+          <div class="space-y-4">
+            <div>
+              <label for="username" class="block text-sm font-medium text-gray-300 mb-1">Username</label>
+              <div class="input-container">
+                <input type="text" id="username" name="username" class="input-field" placeholder="Enter admin username">
+                <div class="error-message" id="usernameError"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1">
+                <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+                
+              </div>
+              <div class="input-container">
+                <input type="password" id="password" name="password" class="input-field" placeholder="Enter your password">
+                <div class="input-icon w-6 h-6 flex items-center justify-center" id="togglePassword">
+                  <i class="ri-eye-off-line"></i>
+                </div>
+                <div class="error-message" id="passwordError"></div>
+              </div>
+              <div class="password-strength" id="passwordStrength">
+                <div class="password-strength-bar"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="checkbox-container">
+            </div>
+          </div>
+          <button type="submit" class="login-button !rounded-button whitespace-nowrap">Access Admin Panel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script id="passwordToggleScript">
+    document.addEventListener('DOMContentLoaded', function () {
+      const togglePassword = document.getElementById('togglePassword');
+      const passwordField = document.getElementById('password');
+      togglePassword.addEventListener('click', function () {
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        const iconElement = togglePassword.querySelector('i');
+        if (type === 'password') {
+          iconElement.className = 'ri-eye-off-line';
+        } else {
+          iconElement.className = 'ri-eye-line';
+        }
+      });
+    });
+  </script>
+  <script id="rememberMeScript">
+    document.addEventListener('DOMContentLoaded', function () {
+      const rememberCheckbox = document.getElementById('rememberCheckbox');
+      let isChecked = false;
+      rememberCheckbox.addEventListener('click', function () {
+        isChecked = !isChecked;
+        if (isChecked) {
+          rememberCheckbox.classList.add('checked');
+        } else {
+          rememberCheckbox.classList.remove('checked');
+        }
+      });
+    });
+  </script>
+  <script id="passwordStrengthScript">
+    document.addEventListener('DOMContentLoaded', function () {
+      const passwordField = document.getElementById('password');
+      const passwordStrength = document.getElementById('passwordStrength');
+      passwordField.addEventListener('focus', function () {
+        passwordStrength.style.display = 'block';
+      });
+      passwordField.addEventListener('blur', function () {
+        if (!passwordField.value) {
+          passwordStrength.style.display = 'none';
+        }
+      });
+      passwordField.addEventListener('input', function () {
+        const value = passwordField.value;
+        if (!value) {
+          passwordStrength.style.display = 'none';
+          return;
+        }
+        passwordStrength.style.display = 'block';
+        let strength = 0;
+        if (value.length >= 8) strength += 1;
+        if (/[A-Z]/.test(value) && /[a-z]/.test(value)) strength += 1;
+        if (/[0-9]/.test(value)) strength += 1;
+        if (/[^A-Za-z0-9]/.test(value)) strength += 1;
+        passwordStrength.className = 'password-strength';
+        if (strength <= 1) {
+          passwordStrength.classList.add('weak');
+        } else if (strength <= 3) {
+          passwordStrength.classList.add('medium');
+        } else {
+          passwordStrength.classList.add('strong');
+        }
+      });
+    });
+  </script>
+  <script id="formValidationScript">
+    document.addEventListener('DOMContentLoaded', function () {
+      const loginForm = document.getElementById('loginForm');
+      const usernameField = document.getElementById('username');
+      const passwordField = document.getElementById('password');
+      const usernameError = document.getElementById('usernameError');
+      const passwordError = document.getElementById('passwordError');
+      const loginButton = document.querySelector('.login-button');
+      loginForm.addEventListener('submit', function (e) {
+        let isValid = true;
+        usernameError.style.display = 'none';
+        passwordError.style.display = 'none';
+        if (!usernameField.value) {
+          usernameError.textContent = 'Username is required';
+          usernameError.style.display = 'block';
+          isValid = false;
+        }
+        if (!passwordField.value) {
+          passwordError.textContent = 'Password is required';
+          passwordError.style.display = 'block';
+          isValid = false;
+        }
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>

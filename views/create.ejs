@@ -1,129 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Create Item</title>
+  <meta charset="UTF-8" />
+  <title>Create New Car - Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter&display=swap" rel="stylesheet" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-<<<<<<< HEAD
-      background-image: url('/create.jpg');
-=======
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
->>>>>>> main
+      background: url('/create.jpg') no-repeat center center/cover;
+      font-family: 'Inter', sans-serif;
+      padding-top: 80px; /* offset for fixed navbar */
+      min-height: 100vh;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: rgba(0, 0, 0, 0.85);
+      box-shadow: 0 0 10px #e30613;
+    }
+
+    .navbar .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: white;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 10px 15px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      background-color: #e30613;
+      box-shadow: 0 0 10px #e30613;
+    }
+
+    .form-wrapper {
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-<<<<<<< HEAD
-      background-repeat: no-repeat;
-      background-size: cover;
+      padding: 40px 20px;
     }
-    .form-container {
-      background: transparent;
-      backdrop-filter: blur(15px);
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px solid grey;
-      width: 700px;
-  
-=======
+
+    .form-card {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 40px;
+      width: 90%;
+      max-width: 550px;
+      box-shadow: 0 0 20px rgba(227, 6, 19, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
-    .form-container {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 300px;
->>>>>>> main
-    }
+
     h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2em;
+      color: #ffffff;
       text-align: center;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+    }
+
+    .form-group {
+      position: relative;
       margin-bottom: 20px;
-      font-size: 1.5em;
-<<<<<<< HEAD
-      color: whitesmoke;
-=======
-      color: #333;
->>>>>>> main
     }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    input, textarea, button {
-<<<<<<< HEAD
-      margin-left: 28%;
-      margin-bottom: 15px;
-      color: whitesmoke;
-      padding: 10px;
-      border: 1px solid grey;
-      border-radius: 5px;
+
+    input, textarea {
+      width: 100%;
+      padding: 16px 14px;
+      border: 1px solid #555;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
       font-size: 1em;
+      transition: 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #e30613;
+      outline: none;
+      box-shadow: 0 0 10px #e30613;
+    }
+
+    label {
+      position: absolute;
+      left: 14px;
+      top: 16px;
+      color: #aaa;
+      font-size: 0.95em;
+      pointer-events: none;
+      transition: 0.2s ease;
       background: transparent;
-      width: 40%;
-      border: 1px solid grey;
+      padding: 0 4px;
     }
-    textarea::placeholder {
-      color: whitesmoke;
-      font-family: 'Times New Roman', Times, serif;
+
+    input:focus + label,
+    input:not(:placeholder-shown) + label,
+    textarea:focus + label,
+    textarea:not(:placeholder-shown) + label {
+      top: -10px;
+      left: 12px;
+      font-size: 0.8em;
+      background: rgba(0,0,0,0.65);
+      color: #e30613;
     }
-    input::placeholder {
-      color: whitesmoke;
-      font-family: 'Times New Roman', Times, serif;
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
     }
 
     button {
-      background-color: rgb(3, 124, 124);
-      color: #ffffff;
+      background-color: #e30613;
       border: none;
-      margin-left: 210px;
-=======
-      margin-bottom: 15px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      padding: 14px;
+      width: 100%;
+      color: white;
       font-size: 1em;
-    }
-    textarea {
-      resize: none;
-    }
-    button {
-      background-color: #007BFF;
-      color: #ffffff;
-      border: none;
->>>>>>> main
+      font-family: 'Orbitron', sans-serif;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: 0.3s ease;
+      letter-spacing: 1px;
     }
+
     button:hover {
-<<<<<<< HEAD
-      background-color: black;
-=======
-      background-color: #0056b3;
->>>>>>> main
+      background-color: white;
+      color: #e30613;
+      box-shadow: 0 0 12px #fff;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h1>Add New Products</h1>
-<<<<<<< HEAD
-    <form action="/dashboard/create" method="POST">
-=======
-    <form action="/admin/create" method="POST">
->>>>>>> main
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="String" name="price" placeholder="Price" required>
-      <input type="number" name="quantity" placeholder="Quantity" required>
-      <textarea name="description" placeholder="Description" rows="5" required></textarea>
-<<<<<<< HEAD
-      <input type="text" name="image" placeholder="Image url" required>
-=======
-      <input type="text" name="image" required>
->>>>>>> main
-      <button type="submit">Create</button>
-    </form>
+
+  <!-- 🔥 Fixed Admin Header -->
+  <header class="navbar">
+    <div class="logo">
+      <span>Elegance Wheels</span>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/dashboard">Home</a></li>
+        <li><a href="/dashboard/create">Create</a></li>
+        <li><a href="/dashboard/read">Read</a></li>
+        <li><a href="/dashboard/orders">Orders</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 💻 Create Form -->
+  <div class="form-wrapper">
+    <div class="form-card">
+      <h1>Add New Car</h1>
+      <form action="/dashboard/create" method="POST" autocomplete="off">
+        <div class="form-group">
+          <input type="text" name="name" required placeholder=" " />
+          <label>Car Name</label>
+        </div>
+        <div class="form-group">
+          <input type="text" name="price" required placeholder=" " />
+          <label>Price (PKR)</label>
+        </div>
+        <div class="form-group">
+          <input type="number" name="quantity" required placeholder=" " />
+          <label>Quantity</label>
+        </div>
+        <div class="form-group">
+          <textarea name="description" required placeholder=" "></textarea>
+          <label>Description</label>
+        </div>
+        <div class="form-group">
+          <input type="text" name="image" required placeholder=" " />
+          <label>Image URL</label>
+        </div>
+        <button type="submit">Create Car</button>
+      </form>
+    </div>
   </div>
+
 </body>
 </html>
